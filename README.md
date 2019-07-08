@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jpoullet2000/orange3-shap.svg?branch=master)](https://travis-ci.org/jpoullet2000/orange3-shap)
+
 Orange3-Shap
 ============
 
