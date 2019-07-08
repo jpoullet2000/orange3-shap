@@ -1,0 +1,34 @@
+language: python
+dist: xenial # trusty doesn't support Py3.7
+
+cache:
+    apt: true
+    pip: true
+    ccache: true
+
+matrix:
+    include:
+        - python: '3.6'
+          env: ORANGE="release"
+
+        - python: '3.7'
+          env: ORANGE="release"
+
+        - python: '3.7'
+          env: ORANGE="master"
+
+before_install:
+    - pip install -U setuptools pip wheel
+    - pip install codecov
+
+install:
+    - pip install pyqt5==5.11.*
+    - source $TRAVIS_BUILD_DIR/.travis/install_orange.sh
+    - travis_wait pip install -e .
+
+script:
+    - XVFBARGS="-screen 0 1280x1024x24"
+    - catchsegv xvfb-run -a -s "$XVFBARGS" coverage run setup.py test
+
+after_success:
+- codecov
