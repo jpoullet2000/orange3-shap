@@ -8,4 +8,4 @@ def suite(loader=unittest.TestLoader(), pattern='test*.py'):
 
 
 if __name__ == '__main__':
-unittest.main(defaultTest='suite')
+    unittest.main(defaultTest='suite')

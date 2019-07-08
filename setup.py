@@ -46,7 +46,7 @@ if __name__ == '__main__':
         ],
         packages=find_packages(),
         package_data={
-            "orangecontrib.shap.widgets": ["icons/*.svg",
+            "orangecontrib.shap.widgets": ["icons/*.png",
                                                  "*.js"],
         },
         install_requires=[
