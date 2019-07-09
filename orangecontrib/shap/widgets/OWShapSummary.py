@@ -113,16 +113,18 @@ class OWShapSummary(OWWidget):
         model = self.model
         features = [feature.name for feature in self.dataset.domain.attributes]
         shap_values = shap.TreeExplainer(model.skl_model).shap_values(X)
-        shap_df = pd.DataFrame(shap_values, columns=features)
-        shap_importances = shap_df.abs().mean()
-        shap_importances = shap_importances / shap_importances.sum()
-        shap_importances = shap_importances.sort_values(ascending=False)
-        shap_importance_features = list(shap_importances[:self.max_nr_features].index)
-        #print(shap_importance_features)
+        if isinstance(self.model.skl_model, SKL_RF):
+            shap_df = pd.DataFrame(shap_values, columns=features)
+            shap_importances = shap_df.abs().mean()
+            shap_importances = shap_importances / shap_importances.sum()
+            shap_importances = shap_importances.sort_values(ascending=False)
+            shap_importance_features = list(shap_importances[:self.max_nr_features].index)
+            #print(shap_importance_features)
+            idx =  [i in shap_importance_features for i in features].index(True)
+            sample = self.dataset[idx]
+            #self.Outputs.sample.send(sample)
+
         shap.summary_plot(shap_values, X, feature_names=features, max_display=int(self.max_nr_features))
-        idx =  [i in shap_importance_features for i in features].index(True)
-        sample = self.dataset[idx]
-        #self.Outputs.sample.send(sample)
 
 
 if __name__ == "__main__":  # pragma: no cover
