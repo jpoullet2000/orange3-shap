@@ -7,7 +7,7 @@ VERSION = '0.0.1'
 
 ENTRY_POINTS = {
     'orange3.addon': (
-        'shap = orangecontrib.shap',
+        'oshap = orangecontrib.oshap',
     ),
     # Entry point used to specify packages containing tutorials accessible
     # from welcome screen. Tutorials are saved Orange Workflows (.ows files).
@@ -20,12 +20,12 @@ ENTRY_POINTS = {
         # Syntax: category name = path.to.package.containing.widgets
         # Widget category specification can be seen in
         #    orangecontrib/datafusion/widgets/__init__.py
-        'Shap = orangecontrib.shap.widgets',
+        'Shap = orangecontrib.oshap.widgets',
     ),
 
     # Widget help
     "orange.canvas.help": (
-        'html-index = orangecontrib.shap.widgets:WIDGET_HELP_PATH',
+        'html-index = orangecontrib.oshap.widgets:WIDGET_HELP_PATH',
     )
 }
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
             'shap==0.28.5'
         ],
         entry_points=ENTRY_POINTS,
-        test_suite='orangecontrib.shap.tests.suite',
+        test_suite='orangecontrib.oshap.tests.suite',
         namespace_packages=['orangecontrib'],
         zip_safe=False,
         classifiers=[
