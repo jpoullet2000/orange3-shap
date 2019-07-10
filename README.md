@@ -15,7 +15,7 @@ Installing
 ### With Anaconda
 
 The easiest way to install Orange3-Shap on a non-GNU/Linux system is
-with [Anaconda] distribution for your OS (Python version 3.5).
+with [Anaconda] distribution for your OS (Python version >=3.6).
 In your Anaconda Prompt, first add conda-forge to your channels:
 
     conda config --add channels conda-forge
