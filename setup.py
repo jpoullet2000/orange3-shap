@@ -3,7 +3,7 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 
 ENTRY_POINTS = {
     'orange3.addon': (
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             'pandas',  # statsmodels requires this but doesn't have it in dependencies?
             'numpy',
             'scipy>=0.17',
-            'shap==0.28.5'
+            'shap>=0.28.5'
         ],
         entry_points=ENTRY_POINTS,
         test_suite='orangecontrib.oshap.tests.suite',
