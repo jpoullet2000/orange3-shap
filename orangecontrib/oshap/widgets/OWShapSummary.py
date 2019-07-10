@@ -25,7 +25,7 @@ class OWShapSummary(OWWidget):
         model = Input('Model', Model)
 
     class Outputs:
-        sample = Output('Top features', AttributeList)
+        sample = Output('Top Features', AttributeList)
 
     want_main_area = False
 
