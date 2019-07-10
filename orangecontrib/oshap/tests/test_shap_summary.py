@@ -16,6 +16,8 @@ class TestShapSummary(WidgetTest):
     def test_shap_summary(self):
         data = self.iris.copy()
         widget = self.widget
-        model = RandomForestRegressor(SKL_RF(n_estimators=10))
+        rf = SKL_RF(n_estimators=10)
+        model = RandomForestRegressor(rf)
+        rf.fit(data.X, data.Y)
         self.send_signals([(widget.Inputs.data, data), (widget.Inputs.model, model)])
         self.assertEquals(2, 2)
