@@ -51,9 +51,6 @@ To install the add-on from source
     # Install Orange3-Shap in editable/development mode.
     pip install -e .
 
- - [numpy+mkl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
- - [scipy](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
-
 To register this add-on with Orange, run
 
     python setup.py install

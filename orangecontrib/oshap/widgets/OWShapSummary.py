@@ -17,7 +17,7 @@ from Orange.regression.random_forest import RandomForestRegressor
 class OWShapSummary(OWWidget):
     name = "Shap summary plot"
     description = "Plot shap summary"
-    icon = "icons/Shap.png"
+    icon = "icons/shap_summary.png"
     priority = 10
 
     class Inputs:
