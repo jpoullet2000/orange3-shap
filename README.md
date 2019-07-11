@@ -26,7 +26,7 @@ Then install Orange3:
 
 This will install the latest release of Orange. Then install Orange3-Shap:
   
-    pip install Orange3-Shap
+    pip install orange3-shap
 
 Run:
 
