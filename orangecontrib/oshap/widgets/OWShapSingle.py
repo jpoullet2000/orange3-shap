@@ -100,16 +100,23 @@ class OWShapSingle(OWWidget):
 #        self.task.watcher = FutureWatcher(self.task.future)
 #        self.task.watcher.done.connect(self.__update_is_done)
         self.__update()
-        
+
     def __update(self):
         X = self.dataset.X
         idx = int(self.sample_index)
         model = self.model
-        features = [feature.name for feature in self.dataset.domain.attributes]
-        explainer = shap.TreeExplainer(model.skl_model)
-        shap_values = explainer.shap_values(X)
-        shap.force_plot(explainer.expected_value, shap_values[idx, :], X[idx, :], feature_names=features, matplotlib=True)
-    
+        if isinstance(self.model.skl_model, SKL_RF):
+            features = [feature.name for feature in self.dataset.domain.attributes]
+            explainer = shap.TreeExplainer(model.skl_model)
+            shap_values = explainer.shap_values(X)
+            shap.force_plot(explainer.expected_value, shap_values[idx, :], X[idx, :], feature_names=features, matplotlib=True)
+        else:  # model.skl_model should be RandomForestClassifier
+            features = [feature.name for feature in self.dataset.domain.attributes]
+            explainer = shap.TreeExplainer(model.skl_model)
+            shap_values = explainer.shap_values(X)
+            for c in range(len(shap_values)):
+                shap.force_plot(explainer.expected_value[c], shap_values[c][idx, :], X[idx, :], feature_names=features, matplotlib=True)
+
 
 class Task:
     """
