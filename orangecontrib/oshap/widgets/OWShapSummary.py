@@ -30,7 +30,6 @@ class OWShapSummary(OWWidget):
     want_main_area = False
 
     def __init__(self):
-        super().__init__()
         plt.tight_layout()
         self.max_nr_features = 20
         self.dataset = None

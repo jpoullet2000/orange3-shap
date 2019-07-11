@@ -28,9 +28,7 @@ class OWShapSingle(OWWidget):
     want_main_area = False
 
     def __init__(self):
-        super().__init__()
         plt.tight_layout()
-        self.max_nr_features = 20
         self.sample_index = 0
         self.dataset = None
         self.model = None
