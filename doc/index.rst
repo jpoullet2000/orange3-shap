@@ -8,6 +8,7 @@ Widgets
    :maxdepth: 1
 
    widgets/shap_summary_plot
+   widgets/shap_single_plot
 
 .. alternative ordering:
    :glob:
