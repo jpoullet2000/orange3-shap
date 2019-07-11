@@ -32,6 +32,8 @@ class OWShapSingle(OWWidget):
         plt.tight_layout()
         self.max_nr_features = 20
         self.sample_index = 0
+        self.dataset = None
+        self.model = None
 
         box = gui.widgetBox(self.controlArea, "Info")
         self.infoa = gui.widgetLabel(box, 'No data on input yet, waiting to get something.')
@@ -69,7 +71,8 @@ class OWShapSingle(OWWidget):
             self.infoa.setText('%d instances in input dataset' % len(dataset))
         else:
             self.infoa.setText('No data on input yet, waiting to get something.')
-        
+            return
+
         self.dataset = dataset
         self.sample_box.setMaximum(len(dataset.X) - 1)
 

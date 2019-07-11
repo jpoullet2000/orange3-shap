@@ -31,13 +31,13 @@ class OWShapSummary(OWWidget):
 
     def __init__(self):
         super().__init__()
-        #matplotlib.rcParams["figure.dpi"]=Painter.DEFAULT_DPI
         plt.tight_layout()
         self.max_nr_features = 20
+        self.dataset = None
+        self.model = None
 
         box = gui.widgetBox(self.controlArea, "Info")
         self.infoa = gui.widgetLabel(box, 'No data on input yet, waiting to get something.')
-        self.infob = gui.widgetLabel(box, '')
         gui.widgetLabel(box, 'Maximum number of features')
         gui.spin(box, self, 'max_nr_features', 1, 20)
         self.button = gui.button(box, self, 'Regenerate plots', callback=self._on_click_button)
@@ -50,8 +50,7 @@ class OWShapSummary(OWWidget):
             self.Outputs.sample.send(sample)
         else:
             self.infoa.setText('No data on input yet, waiting to get something.')
-            self.infob.setText('')
-            self.Outputs.sample.send("Sampled Data")
+            return
         
         self.dataset =  dataset
 
@@ -68,7 +67,16 @@ class OWShapSummary(OWWidget):
     def _on_click_button(self):
         self._update()
 
+    
     def _update(self):
+        if self.dataset is None or self.model is None:
+            self.infoa.setText('No input data...')
+            return
+
+        plt.close('all')
+        self.__update()
+
+    def __update(self):
         X = self.dataset.X
         model = self.model
         features = [feature.name for feature in self.dataset.domain.attributes]
@@ -81,7 +89,6 @@ class OWShapSummary(OWWidget):
             shap_importance_features = list(shap_importances[:self.max_nr_features].index)
             attribute_list = [attr for attr in self.dataset.domain.attributes if attr.name in shap_importance_features]
             self.Outputs.sample.send(attribute_list)
-        plt.close('all')
         summary_plot(shap_values, X, feature_names=features, max_display=int(self.max_nr_features))
 
 
